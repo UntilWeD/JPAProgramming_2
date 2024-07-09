@@ -1,9 +1,15 @@
 package com.untilwed.jpaweb.domain;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
 public class Delivery {
+
+    public Delivery(Address address) {
+        this.address = address;
+    }
 
     @Id @GeneratedValue
     @Column(name = "DELIVERY_ID")
