@@ -2,6 +2,7 @@ package com.untilwed.jpaweb.service;
 
 import com.untilwed.jpaweb.domain.item.Item;
 import com.untilwed.jpaweb.repository.ItemRepository;
+import com.untilwed.jpaweb.repository.ItemRepositoryV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +14,7 @@ import java.util.List;
 public class ItemService {
 
     @Autowired
-    ItemRepository itemRepository;
+    ItemRepositoryV2 itemRepository;
 
     public void saveItem(Item item){
         itemRepository.save(item);
@@ -24,6 +25,6 @@ public class ItemService {
     }
 
     public Item findOne(Long itemId) {
-        return itemRepository.findOne(itemId);
+        return itemRepository.findById(itemId).get();
     }
 }

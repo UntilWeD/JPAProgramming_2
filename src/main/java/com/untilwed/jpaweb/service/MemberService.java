@@ -2,6 +2,7 @@ package com.untilwed.jpaweb.service;
 
 import com.untilwed.jpaweb.domain.Member;
 import com.untilwed.jpaweb.repository.MemberRepository;
+import com.untilwed.jpaweb.repository.MemberRepositoryV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +16,7 @@ import java.util.List;
 public class MemberService {
 
     @Autowired
-    MemberRepository memberRepository;
+    MemberRepositoryV2 memberRepository;
 
     /**
      * 회원가입
@@ -42,6 +43,6 @@ public class MemberService {
     }
 
     public Member findOne(Long memberId){
-        return memberRepository.findOne(memberId);
+        return memberRepository.findById(memberId).get();
     }
 }

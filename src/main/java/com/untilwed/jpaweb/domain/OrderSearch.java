@@ -1,5 +1,11 @@
 package com.untilwed.jpaweb.domain;
 
+import org.springframework.data.jpa.domain.Specification;
+
+import static com.untilwed.jpaweb.domain.OrderSpec.memberNameLike;
+import static com.untilwed.jpaweb.domain.OrderSpec.orderStatusEq;
+import static org.springframework.data.jpa.domain.Specification.where;
+
 public class OrderSearch {
 
     private String memberName; //회원 이름
@@ -7,6 +13,12 @@ public class OrderSearch {
 
     public String getMemberName() {
         return memberName;
+    }
+
+    // Specification 생성메서드 추가
+    public Specification<Order> toSpecification(){
+        return where(memberNameLike(memberName))
+                .and(orderStatusEq(orderStatus));
     }
 
     public void setMemberName(String memberName) {
