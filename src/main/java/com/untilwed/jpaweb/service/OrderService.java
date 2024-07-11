@@ -53,6 +53,12 @@ public class OrderService {
         order.get().cancel();
     }
 
+    public Order findOrder(Long orderId){
+        //주문 엔티티 조회
+        Optional<Order> order = orderRepository.findById(orderId);
+        return order.get();
+    }
+
     /** 주문 검색*/
 //    public List<Order> findOrders(OrderSearch orderSearch){
 //        return orderRepository.findAll(orderSearch);

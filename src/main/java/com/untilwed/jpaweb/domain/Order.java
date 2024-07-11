@@ -1,5 +1,6 @@
 package com.untilwed.jpaweb.domain;
 
+import com.untilwed.jpaweb.domain.listener.OrderListener;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -8,13 +9,17 @@ import java.util.List;
 
 @Entity
 @Table(name = "ORDERS")
+@EntityListeners(OrderListener.class)
+@NamedEntityGraph(name = "Order.withMember", attributeNodes = {
+        @NamedAttributeNode("member")
+})
 public class Order {
 
     @Id @GeneratedValue
     @Column(name = "ORDER_ID")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY) // 지연로딩
+    @ManyToOne(fetch = FetchType.LAZY, optional = false) // 지연로딩
     @JoinColumn(name = "MEMBER_ID")
     private Member member; //주문회원
 

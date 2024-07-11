@@ -6,6 +6,7 @@ import com.untilwed.jpaweb.domain.OrderSearch;
 import com.untilwed.jpaweb.domain.QMember;
 import com.untilwed.jpaweb.domain.QOrder;
 import org.apache.catalina.util.StringUtil;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.util.StringUtils;
 
@@ -40,4 +41,6 @@ public class OrderRepositoryImpl extends QuerydslRepositorySupport implements Cu
 
         return query.fetch();
     }
+
+
 }

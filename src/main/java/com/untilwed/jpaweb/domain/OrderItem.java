@@ -1,6 +1,7 @@
 package com.untilwed.jpaweb.domain;
 
 import com.untilwed.jpaweb.domain.item.Item;
+import com.untilwed.jpaweb.domain.Order;
 import jakarta.persistence.*;
 
 @Entity

@@ -3,15 +3,19 @@ package com.untilwed.jpaweb.repository;
 import com.untilwed.jpaweb.domain.Member;
 import com.untilwed.jpaweb.domain.Order;
 import com.untilwed.jpaweb.domain.OrderSearch;
+import jakarta.persistence.EntityGraph;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class OrderRepository {
@@ -50,5 +54,14 @@ public class OrderRepository {
         cq.where(cb.and(criteria.toArray(new Predicate[criteria.size()])));
         TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000); //최대 검색 1000 건으로 제한
         return query.getResultList();
+    }
+
+    public void usingEntityGraph(Long orderId){
+        EntityGraph graph = em.getEntityGraph("Order.withMember");
+
+        Map hints = new HashMap();
+        hints.put("javax.persistence.fetchgraph", graph);
+
+        Order order = em.find(Order.class, orderId, hints);
     }
 }
