@@ -4,6 +4,7 @@ import com.untilwed.jpaweb.domain.Member;
 import com.untilwed.jpaweb.repository.MemberRepository;
 import com.untilwed.jpaweb.repository.MemberRepositoryV2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,7 +43,12 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public Member findOne(Long memberId){
-        return memberRepository.findById(memberId).get();
+    public Member findOne(Long memberId) throws EmptyResultDataAccessException {
+        try{
+            return memberRepository.findById(memberId).get();
+        } catch (EmptyResultDataAccessException ex){
+            throw new EmptyResultDataAccessException("해당 회원은 존재하지 않습니다.", 1);
+        }
+
     }
 }

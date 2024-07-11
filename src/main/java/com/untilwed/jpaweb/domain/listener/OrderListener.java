@@ -5,6 +5,7 @@ import com.untilwed.jpaweb.domain.Order;
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.PrePersist;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
  * 특정 엔티티 실행 후 로그 시 Listener로 JPA이벤트시점마다 출력함.

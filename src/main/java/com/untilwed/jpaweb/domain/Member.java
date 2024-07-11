@@ -1,11 +1,13 @@
 package com.untilwed.jpaweb.domain;
 
 import jakarta.persistence.*;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Cacheable
 public class Member {
 
     @Id @GeneratedValue
